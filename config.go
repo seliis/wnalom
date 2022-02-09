@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 )
 
 type Configuration struct {
@@ -20,16 +19,11 @@ type ClientKeys struct {
 	Secret string `json:"Secret"`
 }
 
-var (
-	Config Configuration
-)
-
 func ReadConfig() error {
 	if data, err := ioutil.ReadFile("config.json"); err == nil {
 		json.Unmarshal(data, &Config)
 		return nil
 	} else {
-		log.Println("Can't Read Config File")
 		return err
 	}
 }
